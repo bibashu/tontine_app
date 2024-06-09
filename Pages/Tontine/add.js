@@ -1,7 +1,10 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-// import { firebase } from "https://www.gstatic.com/firebasejs/10.9.0/firebase.js"; 
-import{ getFirestore, firebase } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  addDoc
+ 
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://support.google.com/firebase/answer/7015592
@@ -17,39 +20,42 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+      // Initialize Cloud Firestore and get a reference to the service
+      const db = getFirestore(app);
 
 
-// Initialize Cloud Firestore and get a reference to the service
-const db = firebase.firestore();
-
-console.log(db)
 
 const submitTontine = document.getElementById("submit");
 
-submitTontine.addEventListener("click", (event) => {
-  event.preventDefault();
-  const nom_tontine = document.getElementById("nom_tontine")
-  const nb_participants = document.getElementById("nb_participants").valu
+submitTontine.addEventListener("click", addTontine)
+
+
+async function addTontine(event){
+  event.preventDefault()
+  // alert("ca marche")
+  try {
+    const nom_tontine = document.getElementById("nom_tontine").value
+  const nb_participants = document.getElementById("nb_participants").value
   const somme_an = document.getElementById("somme_an").value;
   const somme_mois = document.getElementById("somme_mois").value;
-  console.log(nom_tontine)
-  // Add a new document with a generated id.
-db.collection("tontine").add({
-  nom_tontine: nom_tontine,
-  nombre_maximum_membres: nb_participants,
-  somme_an: somme_an,
-  somme_mois: somme_mois
 
-})
-.then((docRef) => {
-  console.log("Document written with ID: ", docRef.id);
-})
-.catch((error) => {
-  console.error("Error adding document: ", error);
-});
-    
+ 
+    // Replace 'your-collection-name' with the name of your Firestore collection
+    const docRef = await addDoc(collection(db, 'tontine'), {
+      // Replace the following with the data you want to store
+      nom_tontine: nom_tontine,
+      nombre_maximum_membres: parseInt(nb_participants),
+      somme_an: parseInt(somme_an),
+      somme_mois: parseInt(somme_mois)
+    });
+    setTimeout(() => {
+      
+      window.location.href = "./tontine.html"
 
-});
-
-
+    }, 1000);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}

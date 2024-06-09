@@ -1,0 +1,30 @@
+.bouton1{
+    background-color: rgba(0, 128, 0, 0.574);
+    color: white;
+    border-radius: 25px;
+    font-size: 14px;
+    border: none;
+    
+}
+.bouton2{
+    background-color: rgba(255, 0, 0, 0.431);
+    color: white;
+    border-radius: 25px;
+    font-size: 14px;
+    border: none;
+
+
+}
+.btnGroup{
+    display: flex;
+    gap: 5px;
+}
+@media only screen and (max-width: 600px) {
+    .btnGroup{
+        display: block;
+        gap: 5px;
+    }
+  }
+  .div-deatail{
+    background-color: red;
+  }
