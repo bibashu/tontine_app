@@ -137,7 +137,7 @@ try {
     await updateDoc(memberRef, {
         tontineId:documentId
     });
-    console.log('Mise à jour réussie');
+   alert("membre ajouté dans le groupe avec success")
     // document.getElementById('resultMessage').textContent = 'Mise à jour réussie';
 } catch (error) {
     console.error('Erreur lors de la mise à jour du document:', error);
