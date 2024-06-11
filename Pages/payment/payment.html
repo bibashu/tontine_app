@@ -410,7 +410,13 @@
 
 
 
+<script>
+  const hamBurger = document.querySelector(".toggle-btn");
 
+  hamBurger.addEventListener("click", function () {
+    document.querySelector("#sidebar").classList.toggle("expand");
+  });
+</script>
   <script src="payment.js" type="module" ></script> 
   <script src="addpayment.js" type="module" ></script> 
     

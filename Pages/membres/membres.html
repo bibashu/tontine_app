@@ -45,17 +45,10 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a
-              href="#"
-              class="sidebar-link collapsed has-dropdown"
-              data-bs-toggle="collapse"
-              data-bs-target="#auth"
-              aria-expanded="false"
-              aria-controls="auth"
-            >
-              <i class="lni lni-protection"></i>
-              <span>Payment</span>
-            </a>
+            <a href="../payment/payment.html" class="sidebar-link">
+              <i class="lni lni-user"></i>
+              <span>Paiements</span>
+          </a>
             <ul
               id="auth"
               class="sidebar-dropdown list-unstyled collapse"
@@ -386,7 +379,13 @@
 
 
 
+<script>
+  const hamBurger = document.querySelector(".toggle-btn");
 
+  hamBurger.addEventListener("click", function () {
+    document.querySelector("#sidebar").classList.toggle("expand");
+  });
+</script>
     <script type="module" src="membres.js"></script>
     <script type="module" src="add.js"></script>
     <!-- <script type="module" src="addGroupe.js"></script> -->

@@ -17,7 +17,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="../Tontine/tontine.css">
+    <link rel="stylesheet" href="../Tontine/tontine.css" />
   </head>
 
   <body>
@@ -133,7 +133,7 @@
       </aside>
       <div class="main">
         <nav
-          class="navbar  navbar-expand px-4 py-3 d-flex justify-content-between gap-sm-3 align-items-center gap-0"
+          class="navbar navbar-expand px-4 py-3 d-flex justify-content-between gap-sm-3 align-items-center gap-0"
         >
           <h4 class="text-white">Dashboard</h4>
           <div class="container d-flex justify-content-end gap-3">
@@ -160,8 +160,6 @@
           <div class="container-fluid">
             <div class="mb-3 mt-5">
               <div class="header-list d-flex justify-content-between mb-4">
-              
-                
                 <button
                   type="button"
                   data-bs-toggle="modal"
@@ -169,33 +167,25 @@
                 >
                   Ajouter Tontine
                 </button>
-                
               </div>
-            <div class="div-deatail">
+              <div class="div-deatail">
                 <h4>Détails Membres</h4>
-                <div class="detailMembres">
-                
-                </div>
-            </div>
+                <div class="detailMembres"></div>
+              </div>
               <div class="container">
                 <h3>détails</h3>
               </div>
-                    <table class="table table-responsive">
+              <table class="table table-responsive">
                 <thead>
                   <tr>
-                   
                     <th scope="col">Nom tontine</th>
                     <th scope="col">Nombre de participants</th>
                     <th scope="col">Montant/mois</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
-                  
                   </tr>
                 </thead>
-                <tbody class="table-tontine">
-                
-                 
-                </tbody>
+                <tbody class="table-tontine"></tbody>
               </table>
             </div>
           </div>
@@ -229,11 +219,16 @@
         </footer>
       </div>
     </div>
+    <script>
+      const hamBurger = document.querySelector(".toggle-btn");
 
-  
+      hamBurger.addEventListener("click", function () {
+        document.querySelector("#sidebar").classList.toggle("expand");
+      });
+    </script>
 
     <script type="module" src="addGroupe.js"></script>
-    
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script
