@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 // TODO: Add SDKs for Firebase products that you want to use
 import {
   getAuth,
-  signInWithEmailAndPassword ,
+  signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,12 +27,12 @@ submitRegister.addEventListener("click", function (event) {
   event.preventDefault();
   const passwordInput = document.querySelector(".password").value;
   const emailInput = document.querySelector(".email").value;
-  signInWithEmailAndPassword (auth, emailInput, passwordInput)
+  signInWithEmailAndPassword(auth, emailInput, passwordInput)
     .then((userCredential) => {
       // Signed in
       var user = userCredential.user;
       alert("user connected");
-      window.location.href = "../Dashboard/home.html"
+      window.location.href = "./Pages/Dashboard/home.html";
       // ...
     })
     .catch((error) => {

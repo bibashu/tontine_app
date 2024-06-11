@@ -189,8 +189,7 @@ a.sidebar-link:hover {
     right: 145px;
 }
 main .card{
-    background: rgb(238,174,202);
-background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(168,113,219,0.6615021008403361) 100%);
+   background-color:rgba(0, 0, 255, 0.325);
 }
 .header-list button{
     border: none;

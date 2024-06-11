@@ -35,7 +35,6 @@ try {
   const querySnapshot = await getDocs(collection(db, "payments"));
   querySnapshot.forEach((doc) => {
     // aficher détaile
-    
 
     var row = document.createElement("tr");
 
@@ -82,7 +81,6 @@ try {
       }, 1000);
     });
 
- 
     row.appendChild(boutonGroup);
 
     row.appendChild(boutonGroup);
@@ -95,7 +93,32 @@ try {
 
   async function modifier(documentId) {
     const modal2 = document.querySelector(".modal2");
-    $("#Mofifier").modal("show"); // Je suppose que "Mofifier" était une faute de frappe et que c'est "Modifier"
+    $("#Mofifier").modal("show");
+    // Je suppose que "Mofifier" était une faute de frappe et que c'est "Modifier"
+    var dropList_M = document.querySelector(".dropList_M");
+    var select_M = document.querySelector("#dropdownSelect_M");
+    console.log(select_M);
+
+    const querySnapshot2 = await getDocs(collection(db, "membres"));
+    querySnapshot2.forEach((doc) => {
+      var memberlist = document.createElement("option");
+      memberlist.textContent = doc.data().nom;
+      select_M.appendChild(memberlist);
+
+      dropList_M.appendChild(select_M);
+    });
+    // Charger ledropdown duréé
+    var dropList2_M = document.querySelector(".dropList2_M");
+    var select2_M = document.querySelector("#dropdownSelectDuree_M");
+
+    const querySnapshot1 = await getDocs(collection(db, "tontine"));
+    querySnapshot1.forEach((doc) => {
+      var tontine = document.createElement("option");
+      tontine.textContent = doc.data().nom_tontine + " - " + doc.data().duree;
+
+      select2_M.appendChild(tontine);
+      dropList2_M.appendChild(select2_M);
+    });
 
     try {
       const docRef = doc(db, "payments", documentId);
@@ -103,15 +126,15 @@ try {
 
       if (docSnapshot.exists()) {
         const data = docSnapshot.data(); // Récupérer les données du document
-        const nom = document.querySelector(".M_nom");
+        // const nom = document.getElementById("dropdownSelect");
         const montant = document.getElementById("M_montant");
-        const duree = document.querySelector(".M_duree");
+        // const duree = document.querySelector(".duree");
         const date = document.getElementById("M_date_payment");
 
         // Remplir les champs du formulaire avec les données du document
-        nom.value = data.nom || "";
+        // nom.value = data.nom || "";
         montant.value = data.montant || "";
-        duree.value = data.duree || "";
+        // duree.value = data.duree || "";
         date.value = data.date || "";
         // passwordInput.value = data.password || "";
 
@@ -125,37 +148,37 @@ try {
 
     // Ajouter un écouteur d'événements sur le bouton "modifier"
     const modifierButton = document.getElementById("modifier");
-    modifierButton.addEventListener("click", modifierTontineFunction);
+    modifierButton.addEventListener("click", modifierMembre);
 
     // Fonction pour gérer le clic sur le bouton "modifier"
-    function modifierTontineFunction(event) {
+    function modifierMembre(event) {
       event.preventDefault();
       modifierTon(documentId); // Appeler votre fonction modifierTon avec l'ID du document
 
-      setTimeout(() => {
-        $("#Modifier").modal("hide"); // Masquer la modal après la modification
-        window.location.href = "membres.html"; // Rediriger vers la page tontine.html
-      }, 1000); // Attendre 1 seconde avant de masquer la modal et de rediriger
+      // setTimeout(() => {
+      //   $("#Modifier").modal("hide"); // Masquer la modal après la modification
+      //   window.location.href = "payment.html"; // Rediriger vers la page tontine.html
+      // }, 1000); // Attendre 1 seconde avant de masquer la modal et de rediriger
     }
   }
 
   // bouton modifier
   async function modifierTon(documentId) {
-    const nom = document.querySelector(".M_nom").value;
-        const montant = document.getElementById("M_montant").value;
-        const duree = document.querySelector(".M_duree").value;
-        const date = document.getElementById("M_date_payment").value;
+    const nom = document.getElementById("dropdownSelect").value;
+    // console.log(nom)
+    const montant = document.getElementById("M_montant").value;
+    const duree = document.querySelector(".duree").value;
+    const date = document.getElementById("M_date_payment").value;
 
-    const tontineRef = doc(db, "membres", documentId);
+    const tontineRef = doc(db, "payments", documentId);
     try {
       await updateDoc(tontineRef, {
         nom: nom,
-        montant: parent(montant),
+        montant: parseInt(montant),
         duree: duree,
-        date: date(date),
-
-       
-      });
+        date: date,
+        });
+      console.log(nom)
       console.log("Document mis à jour avec succès !");
     } catch (error) {
       console.error("Erreur lors de la mise à jour du document :", error);

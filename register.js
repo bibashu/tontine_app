@@ -32,7 +32,7 @@ submitRegister.addEventListener("click", function (event) {
       // Signed in
       var user = userCredential.user;
       alert("user created");
-      window.location.href = "../Dashboard/home.html"
+      window.location.href = "./Pages/Dashboard/home.html"
       // ...
     })
     .catch((error) => {
